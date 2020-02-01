@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.zalesskyi.android.weatherapp"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        all {
+            buildConfigField "String", "WEATHER_API_KEY", '"feafd920b98bd1a3605069b524822993"'
+            buildConfigField "String", "WEATHER_API_ENDPOINT", '"http://api.openweathermap.org/data/"'
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // common
+    implementation supportDependencies.lifecycleExtension
+    implementation supportDependencies.design
+    implementation kotlinDependencies.jdk
+    implementation supportDependencies.exifinterface
+
+    // room
+    implementation roomDependencies.runtime
+    implementation roomDependencies.rxJava2
+    kapt roomDependencies.compiler
+
+    // rx
+    implementation rxjava2Dependencies.rxkotlin
+    implementation rxjava2Dependencies.rxandroid
+
+    // Retrofit
+    implementation rootProject.ext.retrofitDependencies.converter
+    implementation rootProject.ext.retrofitDependencies.retrofit
+    implementation rootProject.ext.retrofitDependencies.adapter
+
+    // Jackson
+    implementation rootProject.ext.jacksonDependencies.interceptor
+    implementation rootProject.ext.jacksonDependencies.annotations
+    implementation rootProject.ext.jacksonDependencies.databind
+    implementation rootProject.ext.jacksonDependencies.core
+    implementation rootProject.ext.jacksonDependencies.joda
+
+    // Anko
+    implementation rootProject.ext.ankoDependencies.anko
+    implementation rootProject.ext.ankoDependencies.commons
+    implementation rootProject.ext.ankoDependencies.common
+
+    // Dagger
+    implementation rootProject.ext.daggerDependencies.dagger
+    kapt rootProject.ext.daggerDependencies.compiler
+    compileOnly rootProject.ext.daggerDependencies.annotation
+
+    // Places
+    implementation rootProject.ext.googleServicesDependencies.places
+
+    // Stetho
+    implementation rootProject.ext.commonDependencies.stetho
+}

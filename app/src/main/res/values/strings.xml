@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="api_key">AIzaSyCj41A78RW07UbsWFwIznP14_WCALHk1Ac</string>
+
+    <string name="search_cities">Search cities</string>
+</resources>
