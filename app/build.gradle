@@ -76,6 +76,6 @@ dependencies {
     // Stetho
     implementation rootProject.ext.commonDependencies.stetho
 
-    // TODO RxPermissions
-    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    // RxPermissions
+    implementation rootProject.ext.rxPermissionsDependencies.core
 }

@@ -36,6 +36,11 @@ ext {
             rxandroid: "io.reactivex.rxjava2:rxandroid:$rxandroid"
     ]
 
+    rxPermissionsVersion = "0.9.5@aar"
+    rxPermissionsDependencies = [
+            core : "com.tbruyelle.rxpermissions2:rxpermissions:$rxPermissionsVersion"
+    ]
+
     retrofitVersion = "2.5.0"
     retrofitDependencies = [
             converter: "com.squareup.retrofit2:converter-jackson:$retrofitVersion",
@@ -99,5 +104,4 @@ ext {
     googleServicesDependencies = [
             places: "com.google.android.libraries.places:places:$placesClientVersion"
     ]
-
 }
