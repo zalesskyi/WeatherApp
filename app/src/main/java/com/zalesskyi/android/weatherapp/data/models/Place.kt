@@ -7,11 +7,11 @@ import kotlinx.android.parcel.Parcelize
 interface Place : Model<String> {
     val name: String?
     val latLng: LatLng?
-    val temperature: String?
+    var temperature: Float?
 }
 
 @Parcelize
 data class PlaceModel(override var id: String?,
                       override val name: String?,
                       override val latLng: LatLng?,
-                      override val temperature: String?) : Place
+                      override var temperature: Float? = null) : Place

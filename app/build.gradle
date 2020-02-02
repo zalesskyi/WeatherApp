@@ -16,6 +16,9 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    dataBinding {
+        enabled = true
+    }
     buildTypes {
         all {
             buildConfigField "String", "WEATHER_API_KEY", '"feafd920b98bd1a3605069b524822993"'
@@ -72,4 +75,7 @@ dependencies {
 
     // Stetho
     implementation rootProject.ext.commonDependencies.stetho
+
+    // TODO RxPermissions
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
 }

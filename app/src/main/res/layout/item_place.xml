@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
-    android:paddingTop="2dp"
-    android:paddingEnd="?android:attr/expandableListPreferredItemPaddingLeft"
-    android:paddingBottom="2dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="place"
+            type="com.zalesskyi.android.weatherapp.data.models.Place" />
 
-    <TextView
-        android:id="@+id/tvTitle"
+        <variable
+            name="listener"
+            type="com.zalesskyi.android.weatherapp.ui.cities.adapters.PlaceAdapterListener" />
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:textAlignment="viewStart"/>
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:paddingTop="2dp"
+        android:onClick="@{(view) -> listener.onPlaceClick(place)}"
+        android:paddingEnd="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:paddingBottom="2dp">
 
-    <TextView
-        android:id="@+id/tvBody"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvTitle"
-        android:layout_alignStart="@id/tvTitle"
-        android:textAlignment="viewStart"
-        android:textAppearance="?textAppearanceSubtitle2" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{place.name}"
+            android:textAlignment="viewStart" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tvTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textAlignment="viewStart"
+            android:text="@{String.format(@string/temperature, place.temperature.toString())}" />
+
+    </RelativeLayout>
+</layout>
