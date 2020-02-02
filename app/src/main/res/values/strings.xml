@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">WeatherApp</string>
-    <string name="api_key">AIzaSyCj41A78RW07UbsWFwIznP14_WCALHk1Ac</string>
+    <string name="api_key">AIzaSyAQ-XEhKyAd_4m_ZqtPngzmSHfbbTYrTu4</string>
 
     <string name="search_cities">Search cities</string>
+    <string name="temperature">%s °F</string>
 </resources>

@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.zalesskyi.android.weatherapp.WeatherApp
 import com.zalesskyi.android.weatherapp.utils.EMPTY_STRING
 import com.zalesskyi.android.weatherapp.utils.bindInterfaceOrThrow
 import org.jetbrains.anko.support.v4.toast
@@ -45,6 +46,9 @@ abstract class BaseLifecycleFragment<T : BaseLifecycleVM> : Fragment(), BaseView
     protected abstract val layoutId: Int
 
     protected var toolbar: Toolbar? = null
+
+    protected val ctx: Context
+        get() = context ?: WeatherApp.instance
 
     protected open val progressObserver = Observer<Boolean> {
         if (it == true) showProgress() else hideProgress()
@@ -97,7 +101,7 @@ abstract class BaseLifecycleFragment<T : BaseLifecycleVM> : Fragment(), BaseView
      * @return Screen title
      */
     protected open fun getStringScreenTitle() =
-          if (getScreenTitle() != NO_TITLE) getString(getScreenTitle()) else EMPTY_STRING
+        if (getScreenTitle() != NO_TITLE) getString(getScreenTitle()) else EMPTY_STRING
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -109,9 +113,11 @@ abstract class BaseLifecycleFragment<T : BaseLifecycleVM> : Fragment(), BaseView
         observeAllLiveData()
     }
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? =
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =
         inflater.inflate(layoutId, container, false)
 
     override fun onResume() {
@@ -168,20 +174,6 @@ abstract class BaseLifecycleFragment<T : BaseLifecycleVM> : Fragment(), BaseView
             errorLD.observe(this@BaseLifecycleFragment, errorObserver)
         }
     }
-/* todo
-    protected fun <T : BaseRecyclerViewAdapter<*, *>>
-            RecyclerView.initRecyclerView(adapter: T?,
-                                          @RecyclerView.Orientation orientation: Int = RecyclerView.VERTICAL,
-                                          @DrawableRes dividerDrawable: Int? = null, isShowDivider: Boolean = false) {
-        layoutManager = LinearLayoutManager(context, orientation, false)
-        if (isShowDivider) {
-            ContextCompat.getDrawable(context, dividerDrawable ?: R.drawable.divider_item)?.let {
-                val dividerItemDecoration = DividerItemDecorator(it)
-                addItemDecoration(dividerItemDecoration)
-            }
-        }
-        this.adapter = adapter
-    }*/
 
     protected inline fun <reified T> FragmentManager.invokeInterfaceIfExist(block: (item: T) -> Unit) {
         fragments.forEach { if (it is T) block(it) }

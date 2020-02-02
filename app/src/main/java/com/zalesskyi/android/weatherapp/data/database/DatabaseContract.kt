@@ -4,7 +4,7 @@ object DatabaseContract {
 
     const val DATABASE_NAME = "weather_db"
 
-    const val DB_VERSION = 0
+    const val DB_VERSION = 1
 
     const val PLACES_TABLE_NAME = "places"
 }

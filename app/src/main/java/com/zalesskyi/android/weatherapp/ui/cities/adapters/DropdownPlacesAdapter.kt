@@ -1,4 +1,4 @@
-package com.zalesskyi.android.weatherapp.ui.cities
+package com.zalesskyi.android.weatherapp.ui.cities.adapters
 
 import android.content.Context
 import android.graphics.Typeface
@@ -12,7 +12,7 @@ import com.google.android.libraries.places.api.model.AutocompletePrediction
 import com.zalesskyi.android.weatherapp.R
 import org.jetbrains.anko.layoutInflater
 
-class PlaceAdapter(context: Context) : ArrayAdapter<AutocompletePrediction>(context, 0) {
+class DropdownPlacesAdapter(context: Context) : ArrayAdapter<AutocompletePrediction>(context, 0) {
 
     companion object {
         private val STYLE_NORMAL = StyleSpan(Typeface.NORMAL)
@@ -20,7 +20,7 @@ class PlaceAdapter(context: Context) : ArrayAdapter<AutocompletePrediction>(cont
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView
-                ?: context.layoutInflater.inflate(R.layout.item_place, parent, false)
+                ?: context.layoutInflater.inflate(R.layout.item_dropdown_place, parent, false)
         val item = getItem(position)
         view?.findViewById<TextView>(R.id.tvTitle)?.text = item?.getPrimaryText(STYLE_NORMAL)
         view?.findViewById<TextView>(R.id.tvBody)?.text = item?.getSecondaryText(STYLE_NORMAL)
